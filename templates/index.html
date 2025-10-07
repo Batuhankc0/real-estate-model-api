@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emlak NLP Modeli Test Arayüzü</title>
+    <title>Real Estate NLP Model Test Interface</title>
     <style>
         body { font-family: sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; line-height: 1.6; }
         textarea { width: 100%; min-height: 80px; font-size: 16px; padding: 10px; box-sizing: border-box; }
@@ -14,19 +14,19 @@
     </style>
 </head>
 <body>
-    <h1>Emlak NLP Modeli Test Arayüzü</h1>
-    <p>Aşağıdaki kutuya İngilizce bir emlak sorgusu yazın ve "Analiz Et" butonuna tıklayın.</p>
+    <h1>Real Estate NLP Model Test Interface</h1>
+    <p>Enter an English real estate query in the box below and click the "Analyze" button.</p>
     
     <form id="nlp-form">
-        <textarea id="sentence-input" placeholder="Örn: show me 2 bed flats in Notting Hill for £500k"></textarea>
+        <textarea id="sentence-input" placeholder="e.g.: show me 2 bed flats in Notting Hill for £500k"></textarea>
         <br><br>
-        <button type="submit">Analiz Et</button>
+        <button type="submit">Analyze</button>
     </form>
     
-    <p id="loader">Analiz ediliyor...</p>
+    <p id="loader">Analyzing...</p>
 
-    <h2>Sonuçlar</h2>
-    <pre id="results">Sonuçlar burada görünecek.</pre>
+    <h2>Results</h2>
+    <pre id="results">Results will appear here.</pre>
 
     <script>
         const form = document.getElementById('nlp-form');
@@ -38,7 +38,7 @@
             event.preventDefault();
             const sentence = sentenceInput.value;
             if (!sentence.trim()) {
-                alert('Lütfen bir cümle girin.');
+                alert('Please enter a sentence.');
                 return;
             }
 
@@ -59,11 +59,11 @@
                 if(response.ok) {
                     resultsDiv.textContent = JSON.stringify(data, null, 2);
                 } else {
-                    resultsDiv.textContent = `Bir hata oluştu:\n${JSON.stringify(data, null, 2)}`;
+                    resultsDiv.textContent = `An error occurred:\n${JSON.stringify(data, null, 2)}`;
                 }
 
             } catch (error) {
-                resultsDiv.textContent = `İstek gönderilirken bir hata oluştu: ${error}`;
+                resultsDiv.textContent = `An error occurred while sending the request: ${error}`;
             } finally {
                 loader.style.display = 'none';
             }
