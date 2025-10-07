@@ -1,0 +1,4 @@
+{"label":"ROOM_COUNT","pattern":[{"LIKE_NUM":true},{"LOWER":{"IN":["bed","bedroom","bedrooms"]}}]}
+{"label":"BATHROOM_COUNT","pattern":[{"LIKE_NUM":true},{"LOWER":{"IN":["bath","bathroom","bathrooms"]}}]}
+{"label":"AREA_SQM","pattern":[{"LIKE_NUM":true},{"LOWER":{"IN":["sqft","sqm","sq","m2"]}}]}
+{"label":"POSTCODE_AREA","pattern":[{"TEXT":{"REGEX":"^[A-Z]{1,2}[0-9][A-Z0-9]?$"}}]}

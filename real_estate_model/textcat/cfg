@@ -1,0 +1,9 @@
+{
+  "labels":[
+    "GENERATE_DESCRIPTION",
+    "FIND_PROPERTY",
+    "ASK_PRICE"
+  ],
+  "threshold":0.0,
+  "positive_label":null
+}
