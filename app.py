@@ -8,7 +8,7 @@ logging.basicConfig(level=logging.INFO)
 
 # --- 1. Flask Uygulamasını ve Modeli Başlat ---
 app = Flask(__name__)
-model_path = Path("./final_emlak_modeli_v14_production_ready")
+model_path = Path("./final_real_estate_model")
 
 # Modeli sadece bir kez, uygulama başlarken yükle. Bu çok önemlidir!
 try:
