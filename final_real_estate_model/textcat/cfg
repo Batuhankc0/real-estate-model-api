@@ -1,0 +1,9 @@
+{
+  "labels":[
+    "GENERATE_DESCRIPTION",
+    "DAIRE_BUL",
+    "FIYAT_SOR"
+  ],
+  "threshold":0.0,
+  "positive_label":null
+}

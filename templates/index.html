@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emlak NLP Modeli Test Arayüzü</title>
+    <style>
+        body { font-family: sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; line-height: 1.6; }
+        textarea { width: 100%; min-height: 80px; font-size: 16px; padding: 10px; box-sizing: border-box; }
+        button { background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        button:hover { background-color: #0056b3; }
+        pre { background-color: #f4f4f4; padding: 15px; border-radius: 5px; white-space: pre-wrap; word-wrap: break-word; }
+        #loader { display: none; }
+    </style>
+</head>
+<body>
+    <h1>Emlak NLP Modeli Test Arayüzü</h1>
+    <p>Aşağıdaki kutuya İngilizce bir emlak sorgusu yazın ve "Analiz Et" butonuna tıklayın.</p>
+    
+    <form id="nlp-form">
+        <textarea id="sentence-input" placeholder="Örn: show me 2 bed flats in Notting Hill for £500k"></textarea>
+        <br><br>
+        <button type="submit">Analiz Et</button>
+    </form>
+    
+    <p id="loader">Analiz ediliyor...</p>
+
+    <h2>Sonuçlar</h2>
+    <pre id="results">Sonuçlar burada görünecek.</pre>
+
+    <script>
+        const form = document.getElementById('nlp-form');
+        const sentenceInput = document.getElementById('sentence-input');
+        const resultsDiv = document.getElementById('results');
+        const loader = document.getElementById('loader');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const sentence = sentenceInput.value;
+            if (!sentence.trim()) {
+                alert('Lütfen bir cümle girin.');
+                return;
+            }
+
+            resultsDiv.textContent = '';
+            loader.style.display = 'block';
+
+            try {
+                const response = await fetch('/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ sentence: sentence })
+                });
+
+                const data = await response.json();
+
+                if(response.ok) {
+                    resultsDiv.textContent = JSON.stringify(data, null, 2);
+                } else {
+                    resultsDiv.textContent = `Bir hata oluştu:\n${JSON.stringify(data, null, 2)}`;
+                }
+
+            } catch (error) {
+                resultsDiv.textContent = `İstek gönderilirken bir hata oluştu: ${error}`;
+            } finally {
+                loader.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

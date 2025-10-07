@@ -1,0 +1,4 @@
+{"label":"ODA_SAYISI","pattern":[{"LIKE_NUM":true},{"LOWER":{"IN":["bed","bedroom","bedrooms"]}}]}
+{"label":"BANYO_SAYISI","pattern":[{"LIKE_NUM":true},{"LOWER":{"IN":["bath","bathroom","bathrooms"]}}]}
+{"label":"ALAN_METREKARE","pattern":[{"LIKE_NUM":true},{"LOWER":{"IN":["sqft","sqm","sq","m2"]}}]}
+{"label":"POSTA_KODU_BOLGE","pattern":[{"TEXT":{"REGEX":"^[A-Z]{1,2}[0-9][A-Z0-9]?$"}}]}
